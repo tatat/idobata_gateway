@@ -8,6 +8,14 @@ module IdobataGateway
   module Strategies
     class Base
       class << self
+        def configuration
+          @configuration ||= Hashie::Mash.new
+        end
+
+        def configure
+          yield configuration
+        end
+
         def endpoint
           "https://idobata.io"
         end
