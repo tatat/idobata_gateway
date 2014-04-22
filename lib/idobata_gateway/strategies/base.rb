@@ -30,7 +30,7 @@ module IdobataGateway
       def initialize(app, hook_id)
         self.app     = app
         self.hook_id = hook_id
-        self.payload = IdobataGateway::Payload.new(params)
+        self.payload = Payload.new(params)
       end
 
       def endpoint
@@ -58,8 +58,7 @@ module IdobataGateway
       end
 
       def render(template, locals = {}, options = {})
-        IdobataGateway::Template.new(options)
-          .render(template, locals.merge(payload: payload))
+        Template.new(options).render(template, locals.merge(payload: payload))
       end
 
       def request(source)
