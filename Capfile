@@ -1,5 +1,3 @@
-require_relative 'lib/settings'
-
 # Load DSL and Setup Up Stages
 require 'capistrano/setup'
 
