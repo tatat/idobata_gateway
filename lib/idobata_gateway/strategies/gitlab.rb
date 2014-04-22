@@ -14,6 +14,8 @@ module IdobataGateway
         end
       end
 
+      private
+
       def build_push
         ref    = payload.ref.gsub(%r{\Arefs/heads/}, '')
         locals = {ref: ref}
