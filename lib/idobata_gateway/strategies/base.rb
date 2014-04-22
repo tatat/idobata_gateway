@@ -1,3 +1,4 @@
+require 'hashie'
 require 'json'
 require 'faraday'
 require 'idobata_gateway/payload'
@@ -7,7 +8,7 @@ module IdobataGateway
   module Strategies
     class Base
       class << self
-        def url
+        def endpoint
           "https://idobata.io"
         end
 
@@ -24,8 +25,8 @@ module IdobataGateway
         self.payload = IdobataGateway::Payload.new(params)
       end
 
-      def url
-        self.class.url
+      def endpoint
+        self.class.endpoint
       end
 
       def path
@@ -54,7 +55,7 @@ module IdobataGateway
       end
 
       def request(source)
-        conn = Faraday.new(url: url) do |faraday|
+        conn = Faraday.new(url: endpoint) do |faraday|
           faraday.request :url_encoded
           faraday.adapter Faraday.default_adapter
           yield faraday if block_given?
