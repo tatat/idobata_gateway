@@ -37,8 +37,16 @@ module IdobataGateway
       def load_paths
         @load_paths ||= []
       end
+
+      def default_load_path
+        File.expand_path('templates', File.dirname(__FILE__))
+      end
+
+      def reset_load_paths
+        load_paths.tap(&:clear) << default_load_path
+      end
     end
 
-    load_paths << File.expand_path('templates', File.dirname(__FILE__))
+    reset_load_paths
   end
 end
