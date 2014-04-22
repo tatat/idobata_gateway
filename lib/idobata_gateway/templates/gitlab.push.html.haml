@@ -1,0 +1,13 @@
+%p
+  #{payload.user_name} pushed to branch
+  %a{href: "#{payload.repository.homepage}/commits/#{ref}"}= ref
+  at
+  %a{href: payload.repository.homepage}= payload.repository.name
+  (
+  %a{href: "#{payload.repository.homepage}/compare/#{payload.before}...#{payload.after}"} compare
+  )
+%ul
+  - payload.commits.each do |commit|
+    %li
+      %a{href: commit.url}= commit.id[0..6]
+      #{commit.message}

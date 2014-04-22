@@ -1,0 +1,5 @@
+%p
+  #{payload.user_name} pushed new branch
+  %a{href: "#{payload.repository.homepage}/commits/#{ref}"}= ref
+  at
+  %a{href: payload.repository.homepage}= payload.repository.name
